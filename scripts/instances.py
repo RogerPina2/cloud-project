@@ -46,12 +46,13 @@ def launch_OMR_instance(region_name, DB_host):
         KeyName='kp-nv',
         UserData="""#!/bin/sh
 sudo apt update
-git clone https://github.com/RogerPina2/cloud-project.git
-cd cloud-project
-sed -i 's/node1/{DB_host}/' /portfolio/settings.py
+cd /home/ubuntu
+git clone https://github.com/raulikeda/tasks.git
+sudo sed -i "83 c \\\t'HOST': '{0}'," tasks/portfolio/settings.py
+cd tasks
 ./install.sh
 sudo reboot
-""",
+""".format(DB_host),
         SecurityGroups=["ORM"],
         TagSpecifications=[{
             'ResourceType' : 'instance',
@@ -60,4 +61,37 @@ sudo reboot
                 {'Key': 'Owner', 'Value': 'Roger Pina'}
             ]
         }]
+    )
+
+def get_instanceId(region_name, instanceTagName):
+    
+    client = session.client('ec2', region_name=region_name)
+
+    response = client.describe_instances(
+        Filters=[
+            {
+                'Name': 'tag:Name', 
+                'Values': [instanceTagName]
+                },
+            {
+                'Name': 'instance-state-name', 
+                'Values': ['running']
+                }
+        ],  
+    )
+
+    instanceId = response['Reservations'][0]['Instances'][0]['InstanceId']
+
+    return instanceId
+
+def terminate_an_instance(region_name, instanceTagName):
+
+    instanceId = get_instanceId(region_name, instanceTagName)
+
+    client = session.client('ec2', region_name=region_name)
+
+    client.terminate_instances(
+        InstanceIds=[
+            instanceId
+        ]
     )
