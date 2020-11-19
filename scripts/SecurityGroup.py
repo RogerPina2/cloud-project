@@ -1,6 +1,6 @@
 from .parameters import session
 
-def create_security_group(region_name, GroupName, Description, Tags={'Name':'', 'Owner':'Roger Pina'}):
+def create_SecurityGroup(region_name, GroupName, Description, Tags={'Name':'', 'Owner':'Roger Pina'}):
 
     client = session.client('ec2', region_name=region_name)
 
@@ -16,6 +16,14 @@ def create_security_group(region_name, GroupName, Description, Tags={'Name':'', 
                 ]
             }
         ]
+    )
+
+def delete_SecurityGroup(region_name, GroupName):
+
+    client = session.client('ec2', region_name=region_name)
+
+    client.delete_security_group(
+        GroupName=GroupName
     )
 
 def add_IpPermission(region_name, GroupName, Port, CidrIp='0.0.0.0/0', Description=''):
@@ -38,3 +46,17 @@ def add_IpPermission(region_name, GroupName, Port, CidrIp='0.0.0.0/0', Descripti
             },
         ],
     )
+
+def get_SG_id_from_GroupName(region_name, GroupName):
+    
+    client = session.client('ec2', region_name=region_name)
+
+    response = client.describe_security_groups(
+        GroupNames=[
+            GroupName
+        ],
+    )
+
+    groupId = response['SecurityGroups'][0]['GroupId']
+
+    return groupId
