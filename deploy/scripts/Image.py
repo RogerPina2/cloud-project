@@ -19,9 +19,11 @@ def create_AMI_from_instance(region_name, instanceTagName, AMI_name):
     imageId = image_response['ImageId']
     image = resource.Image(imageId)
     
+    print('Waiting Image state return available')
+
     while (image.state != 'available'):
         image = resource.Image(imageId)
-        print(image.state)
+        print('image state: {}'.format(image.state))
         time.sleep(30)
 
     return print('Image exists and is available')
@@ -35,6 +37,8 @@ def delete_AMI(region_name, AMI_name):
     client.deregister_image(
         ImageId=AMI_id
     )
+
+    print('image deleted')
 
     time.sleep(120)
 

@@ -25,6 +25,8 @@ def create_KeyPair(region_name, keypair_name):
         outfile1.write(KeyPairOut)
         outfile2.write(KeyPairOut)
 
+        print('KeyPair created in {}'.format(region_name))
+
     except Exception as error:
         print(error)
 
@@ -42,3 +44,5 @@ def delete_KeyPair(region_name, keypair_name):
 
     os.remove(file1)
     os.remove(file2)
+
+    print('KeyPair deleted in {}'.format(region_name))
