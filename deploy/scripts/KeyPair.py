@@ -8,11 +8,13 @@ from .parameters import session
 def create_KeyPair(region_name, keypair_name):
     client = session.client('ec2', region_name=region_name)
 
-    file = 'ppk/' + keypair_name + '.ppk'
+    file1 = 'deploy/keys/' + keypair_name + '.pem'
+    file2 = 'deploy/keys/' + keypair_name + '.ppk'
 
     try:
         # create a file to store the key locally
-        outfile = open(file, 'w')
+        outfile1 = open(file1, 'w')
+        outfile2 = open(file2, 'w')
 
         # call the boto ec2 function to create a key pair
         key_pair = client.create_key_pair(KeyName=keypair_name)
@@ -20,7 +22,8 @@ def create_KeyPair(region_name, keypair_name):
         # capture the key and store it in a file
         KeyPairOut = str(key_pair['KeyMaterial'])
             #print(KeyPairOut)
-        outfile.write(KeyPairOut)
+        outfile1.write(KeyPairOut)
+        outfile2.write(KeyPairOut)
 
     except Exception as error:
         print(error)
@@ -34,7 +37,8 @@ def delete_KeyPair(region_name, keypair_name):
         KeyName=keypair_name
     )
 
-    file = 'ppk/' + keypair_name + '.ppk'
+    file1 = 'deploy/keys/' + keypair_name + '.ppk'
+    file2 = 'deploy/keys/' + keypair_name + '.pem'
 
-    os.remove(file)        
-
+    os.remove(file1)
+    os.remove(file2)

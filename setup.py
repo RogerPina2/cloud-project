@@ -7,7 +7,7 @@ setup(
     entry_points={
         'console_scripts': [
             'client = client.__main__:main',
-            'deploy = deploy.__main__:main'
+            'deploy = deploy.__main__:main',
         ]
     }
 )

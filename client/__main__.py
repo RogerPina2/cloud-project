@@ -4,12 +4,6 @@ from .tasks import read_tasks, read_task, create_task, update_task, delete_task
 from .users import read_users, read_user, create_user, update_user, delete_user
 
 def main():
-    # print('in main')
-    # args = sys.argv[1:]
-    # print('count of args :: {}'.format(len(args)))
-    # for arg in args:
-    #     print('passed argument :: {}'.format(arg))
-
     args = sys.argv[1:]
 
     if len(args) > 0:
