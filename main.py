@@ -3,11 +3,11 @@ import dotenv
 import boto3
 
 from scripts.parameters import NVirginia, Ohio
-from scripts.KeyPair import create_keypair, delete_keypair
+from scripts.KeyPair import create_KeyPair, delete_KeyPair
 from scripts.SecurityGroup import create_SecurityGroup, delete_SecurityGroup, add_IpPermission
-from scripts.instances import launch_PostgreDB_instance, launch_OMR_instance, terminate_an_instance, get_instanceId
+from scripts.Instances import launch_PostgreDB_instance, launch_OMR_instance, terminate_an_instance, get_instanceId
 from scripts.get_host import get_DB_host
-from scripts.AMI import create_AMI_from_instance, delete_AMI
+from scripts.Image import create_AMI_from_instance, delete_AMI
 from scripts.LoadBalancer import create_LB_to_ORM, delete_LB_to_ORM
 from scripts.LaunchConfiguration import create_LaunchConfiguration, delete_LaunchConfiguration
 from scripts.AutoScaling import create_AutoScaling, delete_AutoScaling
@@ -19,7 +19,7 @@ def create_from_0():
     # === DATABASE (Ohio) ===
     
     # Create keypair
-    create_keypair(Ohio, 'kp-ohio')
+    create_KeyPair(Ohio, 'kp-ohio')
     
     # Create Security Group
     create_SecurityGroup(
@@ -39,7 +39,7 @@ def create_from_0():
     # === ORM (N. Virgínia) ===
 
     # Create keypair
-    create_keypair(NVirginia, 'kp-nv')
+    create_KeyPair(NVirginia, 'kp-nv')
 
     # Create Security Group
     create_SecurityGroup(
@@ -85,18 +85,18 @@ def delete_all():
     delete_AMI(NVirginia, 'ORM_AMI')
     # terminate_an_instance(NVirginia, 'ORM')
     delete_SecurityGroup(NVirginia, 'ORM')
-    delete_keypair(NVirginia, 'kp-nv')
+    delete_KeyPair(NVirginia, 'kp-nv')
 
     terminate_an_instance(Ohio, 'Database')
     delete_SecurityGroup(Ohio, 'DB')
-    delete_keypair(Ohio, 'kp-ohio')
+    delete_KeyPair(Ohio, 'kp-ohio')
     
     return 
 
 def main():
 
-    # create_from_0()
-    # delete_all()
+    delete_all()
+    create_from_0()
 
     return
 

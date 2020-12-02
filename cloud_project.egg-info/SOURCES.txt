@@ -1,0 +1,12 @@
+README.md
+setup.py
+client/__init__.py
+client/__main__.py
+client/parameters.py
+client/tasks.py
+client/users.py
+cloud_project.egg-info/PKG-INFO
+cloud_project.egg-info/SOURCES.txt
+cloud_project.egg-info/dependency_links.txt
+cloud_project.egg-info/entry_points.txt
+cloud_project.egg-info/top_level.txt
