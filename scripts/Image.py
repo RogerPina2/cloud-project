@@ -2,7 +2,7 @@ import time
 
 from .parameters import session
 
-from .instances import get_instanceId
+from .Instances import get_instanceId
 
 def create_AMI_from_instance(region_name, instanceTagName, AMI_name):
 

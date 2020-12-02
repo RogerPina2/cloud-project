@@ -5,7 +5,7 @@ import os
 
 from .parameters import session
 
-def create_keypair(region_name, keypair_name):
+def create_KeyPair(region_name, keypair_name):
     client = session.client('ec2', region_name=region_name)
 
     file = 'ppk/' + keypair_name + '.ppk'
@@ -25,7 +25,7 @@ def create_keypair(region_name, keypair_name):
     except Exception as error:
         print(error)
 
-def delete_keypair(region_name, keypair_name):
+def delete_KeyPair(region_name, keypair_name):
 
     client = session.client('ec2', region_name=region_name)
 

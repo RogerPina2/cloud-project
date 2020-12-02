@@ -66,8 +66,8 @@ def launch_OMR_instance(region_name, DB_host):
         UserData="""#!/bin/sh
 sudo apt update
 cd /home/ubuntu
-git clone https://github.com/raulikeda/tasks.git
-sudo sed -i "83 c \\\t'HOST': '{0}'," tasks/portfolio/settings.py
+git clone https://github.com/RogerPina2/tasks.git
+sudo sed -i "84 c \\\t'HOST': '{0}'," tasks/portfolio/settings.py
 cd tasks
 ./install.sh
 sudo reboot
