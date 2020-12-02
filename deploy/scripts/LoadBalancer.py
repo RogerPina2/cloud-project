@@ -34,6 +34,8 @@ def create_LB_to_ORM(region_name, LoadBalancerName):
         ]
     )
 
+    print('LoadBalancer {} created'.format(LoadBalancerName))
+
 def delete_LB_to_ORM(region_name, LoadBalancerName):
 
     client = session.client('elb', region_name=region_name)
@@ -41,6 +43,9 @@ def delete_LB_to_ORM(region_name, LoadBalancerName):
     client.delete_load_balancer(
         LoadBalancerName=LoadBalancerName
     )
+
+    print('LoadBalancer {} deleted'.format(LoadBalancerName))
+
 
 def get_url(region_name, LoadBalancerName):
 

@@ -34,7 +34,7 @@ def create_AutoScaling(region_name, AutoScalingGroupName, LaunchConfigurationNam
         MinSize=2
     )
 
-
+    print('Auto Scalling {} created'.format(AutoScalingGroupName))
 
 
 def delete_AutoScaling(region_name, AutoScalingGroupName):
@@ -46,4 +46,5 @@ def delete_AutoScaling(region_name, AutoScalingGroupName):
         ForceDelete=True
     )
 
+    print('Auto Scalling {} deleted'.format(AutoScalingGroupName))
     

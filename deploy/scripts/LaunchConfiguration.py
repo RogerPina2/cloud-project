@@ -20,6 +20,8 @@ def create_LaunchConfiguration(region_name, LaunchConfigurationName, AMI_name, k
         InstanceType='t2.micro'
     )
 
+    print('LaunchConfiguration {} created'.format(LaunchConfigurationName))
+
 def delete_LaunchConfiguration(region_name, LaunchConfigurationName):
 
     client = session.client('autoscaling', region_name=region_name)
@@ -27,3 +29,4 @@ def delete_LaunchConfiguration(region_name, LaunchConfigurationName):
     client.delete_launch_configuration(
         LaunchConfigurationName=LaunchConfigurationName
     )
+    print('LaunchConfiguration {} deleted'.format(LaunchConfigurationName))

@@ -43,8 +43,10 @@ sudo systemctl restart postgresql
 
     response = client.describe_instance_status(InstanceIds=[instance.id])
 
+    print('Waiting instance status return ok')
+
     while (response['InstanceStatuses'][0]['InstanceStatus']['Status'] != 'ok'):
-        print(response['InstanceStatuses'][0]['InstanceStatus']['Status'])
+        print('instance status: {}'.format(response['InstanceStatuses'][0]['InstanceStatus']['Status']))
         time.sleep(20)
         response = client.describe_instance_status(InstanceIds=[instance.id])
 
@@ -88,8 +90,10 @@ sudo reboot
 
     response = client.describe_instance_status(InstanceIds=[instance.id])
 
+    print('Waiting instance status return ok')
+
     while (response['InstanceStatuses'][0]['InstanceStatus']['Status'] != 'ok'):
-        print(response['InstanceStatuses'][0]['InstanceStatus']['Status'])
+        print('instancia status: {}'.format(response['InstanceStatuses'][0]['InstanceStatus']['Status']))
         time.sleep(20)
         response = client.describe_instance_status(InstanceIds=[instance.id])
 
