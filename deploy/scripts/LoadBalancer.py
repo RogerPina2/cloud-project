@@ -41,3 +41,19 @@ def delete_LB_to_ORM(region_name, LoadBalancerName):
     client.delete_load_balancer(
         LoadBalancerName=LoadBalancerName
     )
+
+def get_url(region_name, LoadBalancerName):
+
+    client = session.client('elb', region_name=region_name)
+
+    response = client.describe_load_balancers(
+        LoadBalancerNames=[
+            LoadBalancerName,
+        ],
+    )
+
+    dns = response['LoadBalancerDescriptions'][0]['DNSName']
+
+    outfile = open('url', 'w')
+    outfile.write(dns)
+ 

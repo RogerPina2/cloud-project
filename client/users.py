@@ -1,7 +1,9 @@
 import requests
 from datetime import datetime
 
-url = 'http://lb-2113933019.us-east-1.elb.amazonaws.com'
+file = open('url', 'r')
+lburl = file.readline().lower()
+url = 'http://' + lburl
 
 headers = {"Content-type": "application/json"}
 

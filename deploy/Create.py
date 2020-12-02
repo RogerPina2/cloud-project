@@ -5,7 +5,7 @@ from .scripts.KeyPair import create_KeyPair
 from .scripts.SecurityGroup import create_SecurityGroup, add_IpPermission
 from .scripts.Instances import launch_PostgreDB_instance, launch_OMR_instance, terminate_an_instance
 from .scripts.Image import create_AMI_from_instance
-from .scripts.LoadBalancer import create_LB_to_ORM
+from .scripts.LoadBalancer import create_LB_to_ORM, get_url
 from .scripts.LaunchConfiguration import create_LaunchConfiguration
 from .scripts.AutoScaling import create_AutoScaling
 
@@ -73,3 +73,5 @@ def create():
 
     # Create an Auto Scaling using the Launch COnfiguration and LoadBalancer created
     create_AutoScaling(north_virginia, 'AS', 'LC_ORM')
+
+    get_url(north_virginia, 'LB')
