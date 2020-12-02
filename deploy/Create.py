@@ -10,9 +10,6 @@ from .scripts.LaunchConfiguration import create_LaunchConfiguration
 from .scripts.AutoScaling import create_AutoScaling
 
 def create():
-    launch_PostgreDB_instance(ohio)
-
-def create2():
     """
         Create all.
     """
